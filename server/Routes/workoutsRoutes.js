@@ -1,7 +1,11 @@
+const { application } = require("express");
 const express = require("express");
 const workoutsController = require("../controllers/workoutsController");
-const router = express.Router();
+const requireAuth = require("../middleware/requireAuth");
 
+const router = express.Router();
+// checking if user is authorized
+router.use(requireAuth);
 // GET all the workouts
 router.get("/", workoutsController.getAllWorkouts);
 // create a new workouts
